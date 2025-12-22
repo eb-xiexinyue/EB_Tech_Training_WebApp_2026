@@ -18,7 +18,7 @@
 <br>
 <h4>４、下記の通りに、各項目を入力して、次へ</h4>
 
-URI　：　https://github.com/eb-xiexinyue/EB_Tech_Training_2026.git
+URI　：　https://github.com/eb-xiexinyue/EB_Tech_Training_WebApp_2026.git
 
 ユーザー　：　<b>自分のGITHUBのユーザーID</b>
 
