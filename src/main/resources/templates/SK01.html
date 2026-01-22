@@ -25,17 +25,15 @@
 	        <td th:text="${employee.anken != null ? employee.anken.anken_name : '未設定'}"></td>
 	        <td th:text="${employee.anken != null ? employee.anken.department.department_name : '未設定'}"></td>
 	        <td>
-				<a th:href="@{/editEmployee/{id}(id=${employee.employee_id})}">編集</a>
-<!--				<button onclick="editEmployee(this)">編集</button>-->
+				<button onclick="editEmployee(this)">編集</button>
 	        </td>
 	        <td>
-				<a th:href="@{/deleteEmployee/{id}(id=${employee.employee_id})}">削除</a>
-<!--				<button onclick="editEmployee(this)">削除</button>-->
+				<button onclick="deleteEmployee(this)">削除</button>
 	        </td>
 	    </tr>
 	</table>
 	<a th:href="@{/addEmployee}">新規追加</a>
 	
-	<script src="js/SK01.js"></script>
+	<script src="/js/SK01.js"></script>
 </body>
 </html>
