@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import com.example.WebApp.Entity.Anken;
 
 public interface AnkenRepository extends JpaRepository<Anken, Long> {
-	@Query(value = "SELECT anken_id,anken_name FROM Anken WHERE department.department_id = :deptId")
+	@Query(value = "SELECT a FROM Anken a WHERE a.department.department_id = :deptId")
 	List<Anken> findByDepartmentId(@Param("deptId") Long departmentId);
 }

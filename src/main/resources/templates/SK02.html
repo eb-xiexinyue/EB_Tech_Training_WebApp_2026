@@ -51,7 +51,7 @@
 			}
 			
 			fetch('/anken/by-department?departmentId='+departmentId)
-				.then(res => res.json)
+				.then(res => res.json())
 				.then(ankens => {
 					ankens.forEach(anken => {
 						const optionEl = document.createElement("option");
