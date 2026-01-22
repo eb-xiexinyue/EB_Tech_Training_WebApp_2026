@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 th:text="${employee.employee_id == null ? '社員新規登録' : '社員情報編集'}"></h1>
+	<form th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+		<input type="hidden" th:field="*{employee_id}"/>
+		<label>名前：</label><input th:field="*{name}"/>
+		<br>
+		<label>メールアドレス：</label><input th:field="*{email}"/>
+		<br>
+		<label>所属部署：</label>
+		<select th:field="*{departmentId}">
+			<option value="">-- 選択してください --</option>
+			<option th:each="d : ${departments}"
+					th:value="${d.department_id}"
+					th:text="${d.department_name}">
+				
+			</option>
+		</select>
+		<br>
+		<label>所属案件：</label>
+		<select th:field="*{ankenId}">
+			<option value="">-- 選択してください --</option>
+			<option th:each="a : ${ankens}"
+					th:value="${a.anken_id}"
+					th:text="${a.anken_name}">
+				
+			</option>
+		</select>
+		
+		<div>
+			<b style="color: red;" th:text="${errorMsg}"></b>
+		</div>
+		
+		<button th:text="${employee.employee_id == null ? '登録' : '保存'}"></button>
+	</form>
+	
+	<script>
+		document.getElementById("departmentId").addEventListener("change", function(){
+			const departmentId = this.value;
+			const ankenSelect = document.getElementById("ankenId");
+			
+			ankenSelect.innerHTML = '<opiton value="">-- 選択してください --</option>'
+			
+			if(!departmentId){
+				return;
+			}
+			
+			fetch('/anken/by-department?departmentId='+departmentId)
+				.then(res => res.json)
+				.then(ankens => {
+					ankens.forEach(anken => {
+						const optionEl = document.createElement("option");
+						optionEl.value = anken.anken_id
+						optionEl.text = anken.anken_name
+						
+						ankenSelect.appendChild(optionEl)
+					})
+				})
+		})
+	</script>
+</body>
+</html>
