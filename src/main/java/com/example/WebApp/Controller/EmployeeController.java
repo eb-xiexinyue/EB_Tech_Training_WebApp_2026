@@ -14,6 +14,7 @@ import com.example.WebApp.Entity.Employee;
 import com.example.WebApp.Repository.AnkenRepository;
 import com.example.WebApp.Repository.DepartmentRepository;
 import com.example.WebApp.Repository.EmployeeRepository;
+import com.example.WebApp.Util.Message;
 
 @Controller
 public class EmployeeController {
@@ -47,6 +48,7 @@ public class EmployeeController {
     public String editUser(Model model, @PathVariable Long id) {
     	Employee employee = employeeRepository.findById(id).orElse(null);
     	
+    	//所属案件存在する場合、案件idと部署idを設定する
     	if(employee != null) {
     		if(employee.getAnken() != null) {
     			employee.setDepartmentId(employee.getAnken().getDepartment().getDepartment_id());
@@ -66,11 +68,12 @@ public class EmployeeController {
     	
     	Optional<Employee> existedEmployee = employeeRepository.findByEmail(employee.getEmail());
     	
+    	//メールアドレス重複チェック
     	if(existedEmployee.isPresent()) {
     		boolean isEdit = employee.getEmployee_id() != null;
     		
     		if(!isEdit || !existedEmployee.get().getEmployee_id().equals(employee.getEmployee_id())) {
-    			model.addAttribute("errorMsg", "入力されましたメールアドレスは既に使用されています！");
+    			model.addAttribute("errorMsg", Message.BE001);
     			
     			model.addAttribute("employee", employee);
     			model.addAttribute("departments", departmentRepository.findAll());

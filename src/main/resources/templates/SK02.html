@@ -1,45 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title th:text="${employee.employee_id == null ? '社員新規登録' : '社員情報編集'}"></title>
+	<link rel="stylesheet" href="/css/SK02.css">
 </head>
 <body>
-	<h1 th:text="${employee.employee_id == null ? '社員新規登録' : '社員情報編集'}"></h1>
-	<form th:action="@{/saveEmployee}" th:object="${employee}" method="post">
-		<input type="hidden" th:field="*{employee_id}"/>
-		<label>名前：</label><input th:field="*{name}"/>
-		<br>
-		<label>メールアドレス：</label><input th:field="*{email}"/>
-		<br>
-		<label>所属部署：</label>
-		<select th:field="*{departmentId}">
-			<option value="">-- 選択してください --</option>
-			<option th:each="d : ${departments}"
-					th:value="${d.department_id}"
-					th:text="${d.department_name}">
+	<div class="main-area">
+		<h1 th:text="${employee.employee_id == null ? '社員新規登録' : '社員情報編集'}"></h1>
+		<form th:action="@{/saveEmployee}" th:object="${employee}" method="post" onsubmit="return validateForm()">
+			<input type="hidden" th:field="*{employee_id}"/>
+			<table class="main-tbl">
+				<tr>
+					<td class="lbl">
+						<label>名前：</label>
+					</td>
+					<td class="ipt">
+						<input th:field="*{name}"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="lbl">
+						<label>メールアドレス：</label>
+					</td>
+					<td class="ipt">
+						<input th:field="*{email}"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="lbl">
+						<label>所属部署：</label>
+					</td>
+					<td class="ipt">
+						<select th:field="*{departmentId}">
+							<option value="">-- 選択してください --</option>
+							<option th:each="d : ${departments}"
+									th:value="${d.department_id}"
+									th:text="${d.department_name}">
+								
+							</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="lbl">
+						<label>所属案件：</label>
+					</td>
+					<td class="ipt">
+						<select th:field="*{ankenId}">
+							<option value="">-- 選択してください --</option>
+							<option th:each="a : ${ankens}"
+									th:value="${a.anken_id}"
+									th:text="${a.anken_name}">
+								
+							</option>
+						</select>
+					<td>
+				</tr>
+			</table>
+			
+			<div>
+				<b id="errorMsg" style="color: red;" th:text="${errorMsg}"></b>
+			</div>
+			
+			<div>
+				<button type="submit" class="btn" th:text="${employee.employee_id == null ? '登録' : '保存'}"></button>
 				
-			</option>
-		</select>
-		<br>
-		<label>所属案件：</label>
-		<select th:field="*{ankenId}">
-			<option value="">-- 選択してください --</option>
-			<option th:each="a : ${ankens}"
-					th:value="${a.anken_id}"
-					th:text="${a.anken_name}">
-				
-			</option>
-		</select>
-		
-		<div>
-			<b style="color: red;" th:text="${errorMsg}"></b>
-		</div>
-		
-		<button th:text="${employee.employee_id == null ? '登録' : '保存'}"></button>
-		
-		<button onclic="location.href='/SK01'">戻る</button>
-	</form>
+				<button type="button" class="btn" onclick="location.href='/SK01'">戻る</button>
+			</div>
+			
+			</div>
+		</form>
+	</div>
 	
 	<script src="/js/SK02.js"></script>
 </body>

@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Test Page</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>社員一覧</title>
+    <link rel="stylesheet" href="css/SK01.css">
 </head>
 <body>
+	<div class="main-area">
 	<h1>社員一覧</h1>
 
-	<table border="1">
+	<table border="1" class="emp-tbl">
 	    <tr>
 	        <th>社員ID</th>
 	        <th>名前</th>
@@ -32,8 +33,13 @@
 	        </td>
 	    </tr>
 	</table>
-	<a th:href="@{/addEmployee}">新規追加</a>
 	
+	<div class="btn-area">
+		<button type="button" class="btn" onclick="location.href='/addEmployee'">新規追加</button>
+		<button type="button" class="btn" onclick="location.href='/MAIN'">戻る</button>
+	</div>
+	
+	</div>
 	<script src="/js/SK01.js"></script>
 </body>
 </html>
