@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+/* div要素 main-area 設定 */
+div.main-area {
+	text-align: center;
+}
+
+/* table要素 emp-tbl 枠線設定*/
+table.emp-tbl{
+	border-collapse: collapse;
+	margin: auto;
+}
+
+/* table要素 emp-tbl 内th要素枠線余白設定*/
+table.emp-tbl th {
+	border: solid black 1px;
+	padding: 5px;
+}
+
+/* table要素 emp-tbl 内td要素枠線余白設定*/
+table.emp-tbl td {
+	border: solid black 1px;
+	text-align: center;
+	padding: 5px;
+}
+
+/* button要素 btn 間隔設定*/
+button.btn{
+	margin: 20px 100px 20px 100px;
+}
