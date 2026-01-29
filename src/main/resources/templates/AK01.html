@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>社員一覧</title>
+    <title>案件一覧</title>
     <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
@@ -10,9 +10,9 @@
     <section class="card card-list">
 
         <div class="header-bar">
-            <h1>社員一覧</h1>
+            <h1>案件一覧</h1>
             <div class="header-actions">
-                <button type="button" class="btn btn-primary" onclick="location.href='/addEmployee'">新規追加</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/addAnken'">新規作成</button>
                 <button type="button" class="btn" onclick="location.href='/MAIN'">戻る</button>
             </div>
         </div>
@@ -21,31 +21,26 @@
             <table class="tbl">
                 <thead>
                 <tr>
-                    <th>社員ID</th>
-                    <th>名前</th>
-                    <th>メールアドレス</th>
-                    <th>所属案件</th>
+                    <th>案件ID</th>
+                    <th>案件名</th>
                     <th>所属部署</th>
                     <th class="col-center">編集</th>
                     <th class="col-center">削除</th>
                 </tr>
                 </thead>
-
                 <tbody>
-                <tr th:each="employee : ${employees}">
-                    <td th:text="${employee.employee_id}"></td>
-                    <td th:text="${employee.name}"></td>
-                    <td th:text="${employee.email}"></td>
-                    <td th:text="${employee.anken != null ? employee.anken.anken_name : '未設定'}"></td>
-                    <td th:text="${employee.anken != null ? employee.anken.department.department_name : '未設定'}"></td>
+                <tr th:each="anken : ${ankens}">
+                    <td th:text="${anken.anken_id}"></td>
+                    <td th:text="${anken.anken_name}"></td>
+                    <td th:text="${anken.department != null ? anken.department.department_name : '未設定'}"></td>
 
                     <td class="col-center">
                         <button type="button" class="btn btn-sm"
-                                th:onclick="'editEmployee(' + ${employee.employee_id} + ')'">編集</button>
+                                th:onclick="'editAnken(' + ${anken.anken_id} + ')'">編集</button>
                     </td>
                     <td class="col-center">
                         <button type="button" class="btn btn-sm"
-                                th:onclick="'deleteEmployee(' + ${employee.employee_id} + ')'">削除</button>
+                                th:onclick="'deleteAnken(' + ${anken.anken_id} + ')'">削除</button>
                     </td>
                 </tr>
                 </tbody>
@@ -55,6 +50,6 @@
     </section>
 </main>
 
-<script src="/js/SK01.js"></script>
+<script src="/js/AK01.js"></script>
 </body>
 </html>

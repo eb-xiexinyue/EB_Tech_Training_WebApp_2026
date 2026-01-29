@@ -1,16 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title>ホーム</title>
-	<link rel="stylesheet" href="css/MAIN.css">
+    <meta charset="UTF-8">
+    <title>社員管理システム</title>
+    <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
-	<div class="main-area">
-		<h1>社員管理システム</h1>
-		<a th:href="@{/SK01}">社員一覧</a>
-		<a th:href="@{/BK01}">部署一覧</a>
-		<a th:href="@{/AK01}">案件一覧</a>
-	</div>
+
+<div class="page-wrapper">
+
+    <div class="card main-menu-card">
+
+        <!-- タイトル -->
+        <h1 class="page-title center">社員管理システム</h1>
+
+        <!-- メニュー -->
+        <div class="menu-area">
+
+            <a class="menu-btn" th:href="@{/SK01}">
+                社員一覧
+            </a>
+
+            <a class="menu-btn" th:href="@{/BK01}">
+                部署一覧
+            </a>
+
+            <a class="menu-btn" th:href="@{/AK01}">
+                案件一覧
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 </html>

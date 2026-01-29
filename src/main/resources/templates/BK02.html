@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>部署情報</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+<main class="page">
+    <section class="card">
+
+        <div class="header-bar">
+            <!-- 編集 / 追加 タイトル切替 -->
+            <h1 th:text="${department != null && department.department_id != null ? '部署情報編集' : '部署情報追加'}">部署情報追加</h1>
+
+            <div class="header-actions">
+                <button type="submit" class="btn btn-primary" form="deptForm"
+                        th:text="${department != null && department.department_id != null ? '保存' : '登録'}">登録</button>
+                <button type="button" class="btn" onclick="location.href='/BK01'">戻る</button>
+            </div>
+        </div>
+
+        <form id="deptForm" th:action="@{/saveDepartment}" th:object="${department}" method="post" novalidate>
+            <input type="hidden" th:field="*{department_id}" />
+
+            <div class="form-stack">
+                <!-- 部署名（必須） -->
+                <div class="field">
+                    <div class="label">
+                        <span>部署名</span>
+                        <span class="required">*</span>
+                    </div>
+
+                    <input id="departmentName" class="input" type="text" th:field="*{department_name}" />
+
+                    <!-- エラーメッセージ表示領域（スペース確保） -->
+                    <div id="departmentNameError" class="error-text"></div>
+                </div>
+            </div>
+        </form>
+
+    </section>
+</main>
+
+<script src="/js/BK02.js"></script>
+</body>
+</html>

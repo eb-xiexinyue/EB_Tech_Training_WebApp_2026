@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>案件情報</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+<main class="page">
+    <section class="card">
+
+        <div class="header-bar">
+            <!-- 編集 / 追加 タイトル切替 -->
+            <h1 th:text="${anken != null && anken.anken_id != null ? '案件情報編集' : '案件情報追加'}">案件情報追加</h1>
+
+            <div class="header-actions">
+                <button type="submit" class="btn btn-primary" form="ankenForm"
+                        th:text="${anken != null && anken.anken_id != null ? '保存' : '登録'}">登録</button>
+                <button type="button" class="btn" onclick="location.href='/AK01'">戻る</button>
+            </div>
+        </div>
+
+        <form id="ankenForm" th:action="@{/saveAnken}" th:object="${anken}" method="post" novalidate>
+            <input type="hidden" th:field="*{anken_id}" />
+
+            <div class="form-stack">
+
+                <!-- 案件名（必須） -->
+                <div class="field">
+                    <div class="label">
+                        <span>案件名</span>
+                        <span class="required">*</span>
+                    </div>
+
+                    <input id="ankenName" class="input" type="text" th:field="*{anken_name}" />
+                    <div id="ankenNameError" class="error-text"></div>
+                </div>
+
+                <!-- 所属部署（必須） -->
+                <div class="field">
+                    <div class="label">
+                        <span>所属部署</span>
+                        <span class="required">*</span>
+                    </div>
+
+                    <select id="deptSelect" name="departmentId">
+                        <option value="">選択してください</option>
+                        <option th:each="dept : ${departments}"
+                                th:value="${dept.department_id}"
+                                th:text="${dept.department_name}"
+                                th:selected="${anken != null && anken.department != null && anken.department.department_id == dept.department_id}">
+                        </option>
+                    </select>
+
+                    <div id="deptSelectError" class="error-text"></div>
+                </div>
+
+            </div>
+        </form>
+
+    </section>
+</main>
+
+<script src="/js/AK02.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>部署一覧</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+<main class="page">
+    <section class="card card-list">
+
+        <div class="header-bar">
+            <h1>部署一覧</h1>
+            <div class="header-actions">
+                <button type="button" class="btn btn-primary" onclick="location.href='/addDepartment'">新規作成</button>
+                <button type="button" class="btn" onclick="location.href='/MAIN'">戻る</button>
+            </div>
+        </div>
+
+        <!-- カード内だけスクロールする領域 -->
+        <div class="table-wrap">
+            <table class="tbl">
+                <thead>
+                <tr>
+                    <th>部署ID</th>
+                    <th>部署名</th>
+                    <th class="col-center">編集</th>
+                    <th class="col-center">削除</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="department : ${departments}">
+                    <td th:text="${department.department_id}"></td>
+                    <td th:text="${department.department_name}"></td>
+                    <td class="col-center">
+                        <button type="button" class="btn btn-sm"
+                                th:onclick="'editDepartment(' + ${department.department_id} + ')'">編集</button>
+                    </td>
+                    <td class="col-center">
+                        <button type="button" class="btn btn-sm"
+                                th:onclick="'deleteDepartment(' + ${department.department_id} + ')'">削除</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+</main>
+
+<script src="/js/BK01.js"></script>
+</body>
+</html>

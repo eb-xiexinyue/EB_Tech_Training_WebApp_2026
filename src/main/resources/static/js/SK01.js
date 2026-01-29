@@ -1,9 +1,9 @@
-function editEmployee(btn){
-	 let employeeId = btn.parentElement.parentElement.querySelector(".employeeIdCls").innerText;
-	 location.href = "/editEmployee/" + employeeId;
+function editEmployee(id) {
+    location.href = "/editEmployee/" + id;
 }
 
-function deleteEmployee(btn){
-	 let employeeId = btn.parentElement.parentElement.querySelector(".employeeIdCls").innerText;
-	 location.href = "/deleteEmployee/" + employeeId;
+function deleteEmployee(id) {
+    if (confirm("削除しますか？")) {
+        location.href = "/deleteEmployee/" + id;
+    }
 }
