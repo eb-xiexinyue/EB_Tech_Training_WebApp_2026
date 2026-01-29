@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>案件登録</title>
+<link rel="stylesheet" href="/css/AK02.css">
+</head>
+<body>
+
+<h1 th:text="${anken.anken_id == null ? '案件 新規追加' : '案件 編集'}"></h1>
+
+<form th:action="@{/saveAnken}" th:object="${anken}" method="post" onsubmit="return validateAnkenForm()">
+    
+    <input type="hidden" th:field="*{anken_id}"/>
+
+    <div>
+        <label>案件名：</label>
+        <input type="text" th:field="*{anken_name}" id="ankenName"/>
+    </div>
+
+    <div>
+        <label>所属部署：</label>
+        <select th:field="*{department.department_id}" id="departmentId">
+            <option value="">-- 選択してください --</option>
+            <option th:each="d : ${departments}"
+                    th:value="${d.department_id}"
+                    th:text="${d.department_name}">
+            </option>
+        </select>
+    </div>
+
+    <div th:if="${errorMsg}" style="color:red; margin-top:10px;" th:text="${errorMsg}"></div>
+
+    <div id="errorMsg" style="color:red; margin-top:10px;"></div>
+
+    <br>
+
+    <button type="submit">保存</button>
+    <button type="button" onclick="location.href='/AK01'">戻る</button>
+
+</form>
+
+<script src="/js/AK02.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>社員一覧</title>
+    <link rel="stylesheet" href="/css/SK01.css">
+</head>
+<body>
+	<div class="main-area">
+	<h1>社員一覧</h1>
+
+	<table border="1" class="emp-tbl">
+	    <tr>
+	        <th>社員ID</th>
+	        <th>名前</th>
+	        <th>フリガナ</th>
+	        <th>性別</th>
+	        <th>生年月日</th>
+	        <th>メールアドレス</th>
+	        <th>所属案件</th>
+	        <th>所属部署</th>
+	        <th>編集</th>
+	        <th>削除</th>
+	    </tr>
+
+	    <tr th:each="employee : ${employees}">
+	        <td class="employeeIdCls" th:text="${employee.employee_id}"></td>
+	        <td th:text="${employee.name}"></td>
+	        <td th:text="${employee.nameKana}"></td>
+
+	        <!-- 性別表示 -->
+	        <td th:text="${employee.gender == '1' ? '男' : employee.gender == '2' ? '女' : '他'}"></td>
+
+	        <!-- 生年月日表示 -->
+	        <td th:text="${employee.birthDate}"></td>
+
+	        <td th:text="${employee.email}"></td>
+	        <td th:text="${employee.anken != null ? employee.anken.anken_name : '未設定'}"></td>
+	        <td th:text="${employee.anken != null ? employee.anken.department.department_name : '未設定'}"></td>
+
+	        <td>
+				<button onclick="editEmployee(this)">編集</button>
+	        </td>
+	        <td>
+				<button onclick="deleteEmployee(this)">削除</button>
+	        </td>
+	    </tr>
+	</table>
+	
+	<div class="btn-area">
+		<button type="button" class="btn" onclick="location.href='/addEmployee'">新規追加</button>
+		<button type="button" class="btn" onclick="location.href='/MAIN'">戻る</button>
+	</div>
+	
+	</div>
+	<script src="/js/SK01.js"></script>
+</body>
+</html>

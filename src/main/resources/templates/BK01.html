@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>部署一覧</title>
+<link rel="stylesheet" href="/css/BK01.css">
+</head>
+<body>
+<div class="main-area">
+    <h1>部署一覧</h1>
+
+    <table border="1" class="dept-tbl">
+        <tr>
+            <th>部署ID</th>
+            <th>部署名</th>
+            <th>編集</th>
+            <th>削除</th>
+        </tr>
+
+        <tr th:each="dept : ${departments}">
+            <td th:text="${dept.department_id}"></td>
+            <td th:text="${dept.department_name}"></td>
+            <td>
+                <button type="button"
+                        th:onclick="|location.href='/BK02/${dept.department_id}'|">編集</button>
+            </td>
+            <td>
+                <form th:action="|/BK01/delete/${dept.department_id}|" method="post"
+                      onsubmit="return confirm('削除しますか？');">
+                    <button type="submit">削除</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <div class="btn-area">
+        <button onclick="location.href='/BK02'">新規追加</button>
+        <button onclick="location.href='/MAIN'">戻る</button>
+    </div>
+</div>
+
+<script src="/js/BK01.js"></script>
+
+</body>
+</html>

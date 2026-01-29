@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>部署登録</title>
+<link rel="stylesheet" href="/css/BK02.css">
+</head>
+<body>
+<div class="main-area">
+    <h1 th:text="${department.department_id == null ? '部署 新規追加' : '部署 編集'}"></h1>
+
+
+    <form th:action="@{/saveDepartment}" method="post" th:object="${department}" onsubmit="return validateDepartmentForm()">
+        <input type="hidden" th:field="*{department_id}" />
+
+        <div class="form-row">
+            <label>部署名</label>
+            <input type="text" th:field="*{department_name}" id="departmentName" maxlength="255">
+        </div>
+
+
+        <div th:if="${errorMsg}" style="color:red; margin-bottom:10px;" th:text="${errorMsg}"></div>
+
+        <div id="errorMsg" style="color:red; margin-bottom:10px;"></div>
+
+        <div class="btn-area">
+            <button type="submit">保存</button>
+            <button type="button" onclick="location.href='/BK01'">戻る</button>
+        </div>
+    </form>
+</div>
+
+<script src="/js/BK02.js"></script>
+</body>
+</html>

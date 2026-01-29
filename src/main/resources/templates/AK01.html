@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>案件一覧</title>
+<link rel="stylesheet" href="/css/AK01.css">
+</head>
+<body>
+
+<h1>案件一覧</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>案件名</th>
+        <th>所属部署</th>
+        <th>編集</th>
+        <th>削除</th>
+    </tr>
+
+    <tr th:each="a : ${ankenList}">
+        <td th:text="${a.anken_id}"></td>
+        <td th:text="${a.anken_name}"></td>
+        <td th:text="${a.department.department_name}"></td>
+
+  
+        <td>
+            <a th:href="@{/editAnken(id=${a.anken_id})}">編集</a>
+        </td>
+
+        <td>
+            <a th:href="@{/deleteAnken(id=${a.anken_id})}"
+               onclick="return confirm('削除しますか？');">削除</a>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<button onclick="location.href='/AK02'">新規追加</button>
+<button onclick="location.href='/MAIN'">戻る</button>
+
+<script src="/js/AK01.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+@charset "UTF-8";
+.main-area { width: 600px; margin: 0 auto; text-align: center; }
+.form-row { margin-top: 20px; display: flex; justify-content: center; gap: 20px; align-items: center; }
+input[type="text"] { width: 300px; padding: 6px; }
+.btn-area { margin-top: 25px; display: flex; justify-content: center; gap: 40px; }
+.btn { padding: 8px 18px; }
