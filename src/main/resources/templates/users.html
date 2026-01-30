@@ -6,21 +6,29 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	<h1>This is a test page</h1>
-	<h3>Data from DB(table:user)</h3>
+	<h1>ユーザー一覧</h1>
 
 	<table border="1">
 	    <tr>
 	        <th>ID</th>
-	        <th>Name</th>
-	        <th>Email</th>
+	        <th>名前</th>
+	        <th>メールアドレス</th>
+	        <th>編集</th>
+	        <th>削除</th>
 	    </tr>
 	    <tr th:each="user : ${users}">
 	        <td th:text="${user.id}"></td>
 	        <td th:text="${user.name}"></td>
 	        <td th:text="${user.email}"></td>
+	        <td>
+				<a th:href="@{/editUser/{id}(id=${user.id})}">編集</a>
+	        </td>
+	        <td>
+				<a th:href="@{/deleteUser/{id}(id=${user.id})}">削除</a>
+	        </td>
 	    </tr>
 	</table>
+	<a th:href="@{/addUser}">新規追加</a>
 	
 	<script src="js/main.js"></script>
 </body>

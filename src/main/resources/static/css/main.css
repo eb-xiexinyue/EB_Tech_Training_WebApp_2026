@@ -1,4 +1,13 @@
 @charset "UTF-8";
-body {
-	background-color: rgb(168, 213, 223);
+
+/* div要素 main-area 設定 */
+div.main-area{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* div要素 main-area 内部a要素設定 */
+div.main-area a{
+	margin-top: 20px;
 }
